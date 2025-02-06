@@ -1,3 +1,17 @@
+<?php
+include 'connection.php';
+include 'api.php';
+
+ob_start();
+showFolders($conn);
+$jsonData = ob_get_clean();
+
+$students = json_decode($jsonData, true);
+
+$conn->close();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="antialiased">
   <head>
@@ -148,18 +162,33 @@
             </tr>
           </thead>
           <tbody>
+            <?php foreach ($students as $student): ?>
+              <tr>
+            <td><?= htmlspecialchars($student['student_number']) ?></td>
+            <td><?= htmlspecialchars($student['student name']) ?></td>
+            <td><?php echo "Year " . $student['year']?></td>
+            <td>
+              <select id="status">
+              <option disabled selected hidden><?php if ($student['status'] == 1) 
+              {
+                echo "OFFICE";
+                } else {
+                  echo "ENCODING";
+                }
+                ?></option>
+              <option value="office">OFFICE</option>
+              <option value="encoding">ENCODING</option>
+              </select>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+
             <tr>
               <td>2022-8-0121</td>
               <td>McAurthur, James Dauglas</td>
               <td>Year 1</td>
-              <td>
-                <select id="status">
-                  <option disabled selected hidden>Office</option>
-                  <option value="office">Office</option>
-                  <option value="encoding">Encoding</option>
-                  <option value="missing">Missing</option>
-                  <option value="archived">Archived</option>
-                </select>
+              <td class="flex justify-center items-center">
+              <input checked id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
               </td>
             </tr>
 
@@ -172,8 +201,6 @@
                   <option disabled selected hidden>Encoding</option>
                   <option value="office">Office</option>
                   <option value="encoding">Encoding</option>
-                  <option value="missing">Missing</option>
-                  <option value="archived">Archived</option>
                 </select>
               </td>
             </tr>
