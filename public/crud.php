@@ -1,0 +1,26 @@
+<?php 
+
+include "connection.php";
+
+class db_con {
+  private $conn;
+
+  public function __construct($conn)
+  {
+    $this->conn = $conn;
+  }
+
+  public function fetchdata(){
+    $sql = "SELECT students.student_number, 
+                   CONCAT(students.l_name, ', ', students.f_name, ' ', students.middle_name) as 'student name', 
+                   students.year, students.status
+            FROM folder_tracker.students as students
+            ORDER BY year, `student name`;";
+  
+  $result = $this->conn->query($sql);
+
+  return $result;
+  }
+}
+
+?>

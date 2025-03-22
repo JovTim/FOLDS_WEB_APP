@@ -1,15 +1,11 @@
 <?php
 include 'connection.php';
-include 'api.php';
+include 'crud.php';
 
-ob_start();
-showFolders($conn);
-$jsonData = ob_get_clean();
-
-$students = json_decode($jsonData, true);
+$db = new db_con($conn);
+$students = $db->fetchdata();
 
 $conn->close();
-
 ?>
 
 <!DOCTYPE html>
@@ -124,6 +120,11 @@ $conn->close();
         margin-bottom: 0.75em;
       }
 
+      input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+      }
+
       /*Change colour of responsive icon*/
       table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
       table.dataTable.dtr-inline.collapsed
@@ -137,98 +138,95 @@ $conn->close();
   </head>
 
   <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
-    <!--Container-->
     <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto px-2">
-      <!--Title-->
-      <h1
-        class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl"
-      >
-        STUDENT FOLDERS
-      </h1>
+        <h1 class="font-bold text-indigo-500 px-2 py-8 text-xl md:text-2xl">
+            STUDENT FOLDERS
+        </h1>
 
-      <!--Card-->
-      <div id="recipients" class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-        <table
-          id="example"
-          class="stripe hover"
-          style="width: 100%; padding-top: 1em; padding-bottom: 1em"
-        >
-          <thead>
-            <tr>
-              <th data-priority="1">Student Number</th>
-              <th data-priority="3">Name</th>
-              <th data-priority="4">Year</th>
-              <th data-priority="2">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($students as $student): ?>
-              <tr>
-            <td><?= htmlspecialchars($student['student_number']) ?></td>
-            <td><?= htmlspecialchars($student['student name']) ?></td>
-            <td><?php echo "Year " . $student['year']?></td>
-            <td>
-              <select id="status">
-              <option disabled selected hidden><?php if ($student['status'] == 1) 
-              {
-                echo "OFFICE";
-                } else {
-                  echo "ENCODING";
-                }
-                ?></option>
-              <option value="office">OFFICE</option>
-              <option value="encoding">ENCODING</option>
-              </select>
-            </td>
-        </tr>
-        <?php endforeach; ?>
+        <!-- Desktop View -->
+        <div id="recipients" class="hidden md:block p-8 mt-6 rounded shadow bg-white">
+            <table id="example" class="stripe hover w-full">
+                <thead>
+                    <tr>
+                        <th>Student Number</th>
+                        <th>Name</th>
+                        <th>Year</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($student = $students->fetch_assoc()): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($student['student_number']) ?></td>
+                            <td><?= htmlspecialchars($student['student name']) ?></td>
+                            <td>Year <?= htmlspecialchars($student['year']) ?></td>
+                            <td>
+                                <select id="status">
+                                    <option disabled selected hidden>
+                                        <?= $student['status'] == 1 ? "OFFICE" : "ENCODING" ?>
+                                    </option>
+                                    <option value="office">OFFICE</option>
+                                    <option value="encoding">ENCODING</option>
+                                </select>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
 
-            <tr>
-              <td>2022-8-0121</td>
-              <td>McAurthur, James Dauglas</td>
-              <td>Year 1</td>
-              <td class="flex justify-center items-center">
-              <input checked id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              </td>
-            </tr>
+        <!-- Mobile View -->
+        <div class="block md:hidden p-4 mt-6 rounded shadow bg-white">
+            <input type="text" id="mobileSearch" placeholder="Search for students..." class="w-full p-2 mb-4 border rounded"/>
 
-            <tr>
-              <td>2021-8-0512</td>
-              <td>Piatos, Mea Aloy</td>
-              <td>Year 2</td>
-              <td>
-                <select id="status">
-                  <option disabled selected hidden>Encoding</option>
-                  <option value="office">Office</option>
-                  <option value="encoding">Encoding</option>
-                </select>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--/Card-->
+            <div id="mobileList">
+                <?php 
+                // Reset the pointer for the result set to reuse it
+                $students->data_seek(0); 
+                while ($student = $students->fetch_assoc()): ?>
+                    <div class="p-4 mb-4 border rounded-lg bg-gray-50 shadow-sm student-card">
+                        <p><strong>Student Number:</strong> <span class="student-number"><?= htmlspecialchars($student['student_number']) ?></span></p>
+                        <p><strong>Name:</strong> <span class="student-name"><?= htmlspecialchars($student['student name']) ?></span></p>
+                        <p><strong>Year:</strong> Year <?= htmlspecialchars($student['year']) ?></p>
+                        <p><strong>Status:</strong> 
+                            <select id="status" class="border rounded px-2 py-1">
+                                <option disabled selected hidden>
+                                    <?= $student['status'] == 1 ? "OFFICE" : "ENCODING" ?>
+                                </option>
+                                <option value="office">OFFICE</option>
+                                <option value="encoding">ENCODING</option>
+                            </select>
+                        </p>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
     </div>
-    <!--/container-->
 
-    <!-- jQuery -->
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-    ></script>
-
-    <!--Datatables -->
+    <!-- jQuery and DataTables -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
     <script>
-      $(document).ready(function () {
-        var table = $("#example")
-          .DataTable({
-            responsive: true,
-          })
-          .columns.adjust()
-          .responsive.recalc();
-      });
+        $(document).ready(function () {
+            $("#example").DataTable({ responsive: false });
+
+            $(".student-card").hide();
+
+            $("#mobileSearch").on("keyup", function () {
+                var searchText = $(this).val().toLowerCase();
+                if (searchText.length > 0) {
+                    $(".student-card").each(function () {
+                        var studentNumber = $(this).find(".student-number").text().toLowerCase();
+                        var studentName = $(this).find(".student-name").text().toLowerCase();
+                        $(this).toggle(studentNumber.includes(searchText) || studentName.includes(searchText));
+                    });
+                } else {
+                    $(".student-card").hide();
+                }
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
