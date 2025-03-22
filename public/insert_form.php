@@ -1,5 +1,28 @@
+<?php 
+require_once 'connection.php';
+require_once 'crud.php';
+
+$insertData = new db_con($conn);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $student_no = $_POST['student_no'];
+  $f_name = $_POST['f_name'];
+  $m_name = $_POST['m_name'];
+  $l_name = $_POST['l_name'];
+  $year = $_POST['year'];
+
+  $sql = $insertData->insert($student_no, $f_name, $m_name, $l_name, $year);
+
+  if ($sql) {
+    echo "<span style='color: green;'>Record inserted successfully!</span>";
+  } else {
+    echo "<span style='color: red;'>Insertion failed.</span>";
+  }
+}
+?>
+
 <div
-      id="defaultModal"
+      id="insertForm"
       tabindex="-1"
       aria-hidden="true"
       class="fixed inset-0 hidden items-center justify-center bg-gray-900 bg-opacity-50 z-50 px-2"
@@ -15,6 +38,7 @@
           </h3>
           <button
             type="button"
+            id="closeAddForm"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
             data-modal-toggle="defaultModal"
           >
@@ -35,7 +59,7 @@
           </button>
         </div>
         <!-- Modal body -->
-        <form action="#">
+        <form id="folderForm">
           <div class="grid gap-4 mb-4 sm:grid-cols-2">
             <div>
               <label
@@ -106,6 +130,7 @@
               >
               <select
                 id="year"
+                name="year"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               >
                 <option disabled selected hidden>Select Year</option>
@@ -119,6 +144,7 @@
           </div>
           <button
             type="submit"
+            name="submit"
             class="text-black bg-blue-500 inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
           >
             <svg
@@ -137,4 +163,26 @@
           </button>
         </form>
       </div>
-    </div>
+</div>
+
+<div id="responseMessage"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+  $(document).ready(function(){
+    $("#folderForm").submit(function(e) {
+      e.preventDefault();
+
+      $.ajax({
+        type: "POST",
+        url: "insert_form.php",
+        data: $(this).serialize(),
+        success: function(response) {
+          $("#responseMessage").html(response);
+          $("#folderForm")[0].reset();
+        }
+      });
+    });
+  });
+</script>
