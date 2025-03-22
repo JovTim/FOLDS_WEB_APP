@@ -21,6 +21,15 @@ class db_con {
 
   return $result;
   }
+
+  public function insert($student_no, $f_name, $m_name, $l_name, $year){
+    $sql = "INSERT INTO students(student_number, f_name, middle_name, l_name, year, status)
+    VALUES ('$student_no', '$f_name', '$m_name', '$l_name', $year, 1);";
+
+    $result = $this->conn->query($sql);
+
+    return $result;
+  }
 }
 
 ?>
