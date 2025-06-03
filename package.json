@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "tailwindcss": "^4.1.8"
+  },
+  "scripts": {
+    "build:tailwind": "tailwindcss -i ./src/input.css -o ./public/css/styles.css --watch",
+    "tw": "npm run build:tailwind"
+  }
+}
