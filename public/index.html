@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FOLDS</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="container mx-auto p-4 pt-10 px-10">
+      <nav class="text-black px-4 mx-10 pt-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+          <!-- Navigation Links -->
+          <div class="flex justify-between w-full">
+            <div class="flex justify-start">
+              <div class="hidden md:flex">
+                <a
+                  href="#"
+                  class="px-3 pt-2 border-t-2 border-l-2 border-r-2 rounded-t-lg border-black hover:font-bold"
+                  >FOLDERS</a
+                >
+                <a
+                  href="#"
+                  class="px-3 pt-2 border-t-2 border-l-2 border-r-2 rounded-t-lg border-black bg-black text-white hover:font-bold"
+                  >ARCHIVES</a
+                >
+              </div>
+            </div>
+            <a
+              href="#"
+              class="px-3 pt-2 border-t-2 border-l-2 border-r-2 rounded-t-lg border-black bg-black text-white hover:font-bold"
+              >ABOUT</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <div class="p-10 mx-10 border-2 border-black">
+        <div class="flex justify-between">
+          <div class="flex justify-start">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search..."
+              class="border-2 p-2 rounded-none mb-4 w-64 border-black"
+            />
+            <div class="ps-1">
+              <button
+                type="button"
+                class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    d="M18.75 12.75h1.5a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM12 6a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 6ZM12 18a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 18ZM3.75 6.75h1.5a.75.75 0 1 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM5.25 18.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 0 1.5ZM3 12a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 3 12ZM9 3.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM12.75 12a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0ZM9 15.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
+                  />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="">
+            <button
+              type="button"
+              class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-7"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <table class="min-w-full bg-white text-sm">
+          <thead class="border-b-2 border-black">
+            <tr class="text-left">
+              <th class="py-3 px-4">STUDENT NO.</th>
+              <th class="py-3 px-4">FULL NAME</th>
+              <th class="py-3 px-4">YEAR</th>
+              <th class="py-3 px-4">STATUS</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+
+        <div id="pagination" class="flex justify-center mt-4"></div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        const data = [];
+        // for testing purpose
+        for (let i = 1; i <= 300; i++) {
+          let paddedNumber = i.toString().padStart(4, "0");
+          data.push({
+            id: i,
+            student_number: "2020-8-" + paddedNumber,
+            f_name: "Juan",
+            m_name: "Rose",
+            l_name: "Dela Cruz" + i,
+            year: `Year ${i % 5}`,
+            //status: i,
+          });
+        }
+
+        let currentPage = 1;
+        const rowsPerPage = 10;
+
+        function displayTable(filteredData) {
+          const start = (currentPage - 1) * rowsPerPage;
+          const end = start + rowsPerPage;
+          const paginatedItems = filteredData.slice(start, end);
+
+          const rowsHtml = paginatedItems
+            .map(
+              (item) =>
+                `<tr class="text-lg">
+                  <td class="py-3 px-4 border-b max-w-[100px]">${item.student_number.toUpperCase()}</td>
+                  <td class="py-3 px-4 border-b max-w-[200px] break-words">${item.l_name.toUpperCase()}, ${item.f_name.toUpperCase()} ${item.m_name.toUpperCase()} </td>
+                  <td class="py-3 px-4 border-b">${item.year.toUpperCase()}</td>
+                  <td class="py-3 px-4 border-b">OFFICE</td>
+                  <td class="border-b">
+                    <button type="button" class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                    </svg>
+                    </button>
+                    <button type="button" class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                    </svg>
+                    </button>
+                  </td>
+                </tr>`
+            )
+            .join("");
+
+          $("#tableBody").html(rowsHtml);
+          displayPagination(filteredData.length);
+        }
+
+        function displayPagination(totalItems) {
+          const totalPages = Math.ceil(totalItems / rowsPerPage);
+          let buttonsHtml = "";
+
+          function addPageButton(page) {
+            const activeClass =
+              page === currentPage ? "bg-black text-white" : "bg-white";
+            buttonsHtml += `<button class="px-3 py-1 border-2 border-black rounded-none mx-1 ${activeClass}" data-page="${page}">${page}</button>`;
+          }
+
+          if (totalPages <= 7) {
+            for (let i = 1; i <= totalPages; i++) {
+              addPageButton(i);
+            }
+          } else {
+            addPageButton(1);
+
+            if (currentPage > 4) {
+              buttonsHtml += `<span class="px-2">...</span>`;
+            }
+
+            const startPage = Math.max(2, currentPage - 1);
+            const endPage = Math.min(totalPages - 1, currentPage + 1);
+
+            for (let i = startPage; i <= endPage; i++) {
+              addPageButton(i);
+            }
+
+            if (currentPage < totalPages - 3) {
+              buttonsHtml += `<span class="px-2">...</span>`;
+            }
+
+            addPageButton(totalPages);
+          }
+
+          $("#pagination").html(buttonsHtml);
+        }
+
+        function updateTable() {
+          const searchTerm = $("#searchInput").val().toLowerCase();
+          const filteredData = data.filter(
+            (item) =>
+              item.student_number.toLowerCase().includes(searchTerm) ||
+              item.f_name.toLowerCase().includes(searchTerm) ||
+              item.m_name.toLowerCase().includes(searchTerm) ||
+              item.l_name.toLowerCase().includes(searchTerm)
+          );
+          displayTable(filteredData);
+        }
+
+        $("#searchInput").on("keyup", function () {
+          currentPage = 1;
+          updateTable();
+        });
+
+        $("#pagination").on("click", "button", function () {
+          currentPage = parseInt($(this).data("page"));
+          updateTable();
+        });
+
+        updateTable(); // initial load
+      });
+    </script>
+  </body>
+</html>
