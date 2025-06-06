@@ -37,6 +37,7 @@
             <div>
               <label class="block text-sm font-bold text-black">First Name<span class="text-red-500">*</span></label>
               <input
+                id="firstName"
                 type="text"
                 name="firstName"
                 placeholder="e.g. Juan"
@@ -45,6 +46,7 @@
             <div>
               <label class="block text-sm font-bold text-black">Middle Name</label>
               <input
+                id="middleName"
                 type="text"
                 name="middleName"
                 placeholder="e.g. Rose"
@@ -53,6 +55,7 @@
             <div>
               <label class="block text-sm font-bold text-black">Last Name<span class="text-red-500">*</span></label>
               <input
+                id="lastName"
                 type="text"
                 name="lastName"
                 placeholder="e.g. Dela Cruz"
@@ -65,6 +68,7 @@
             <div>
               <label class="block text-sm font-bold text-black">Student Number<span class="text-red-500">*</span></label>
               <input
+                id="studentNumber"
                 type="text"
                 name="studentNumber"
                 placeholder="e.g. 2xxx-x-xxxx"
@@ -73,7 +77,8 @@
             <div>
               <label class="block text-sm font-bold text-black">Year<span class="text-red-500">*</span></label>
               <select
-                name="option1"
+                id="yearStudent"
+                name="yearStudent"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1">
                 <option value="">-- Select --</option>
                 <option value="1">First Year</option>
@@ -86,7 +91,8 @@
             <div>
               <label class="block text-sm font-bold text-black">Status<span class="text-red-500">*</span></label>
               <select
-                name="option2"
+                id="statusFolder"
+                name="statusFolder"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1">
                 <option value="">-- Select --</option>
                 <option value="1">OFFICE</option>
@@ -100,6 +106,7 @@
       <!-- Modal Footer -->
       <div class="border-t px-4 py-2 flex justify-end">
         <button
+          id="submitFolder"
           class="px-3 py-1 bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-md w-full sm:w-auto">
           Add
         </button>

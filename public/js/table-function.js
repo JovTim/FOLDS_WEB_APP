@@ -1,18 +1,22 @@
 let data = [];
 
 // Fetch data from the API
-$.ajax({
-  url: "http://localhost/folds/public/api/folders.php",
-  method: "GET",
-  dataType: "json",
-  success: function (response) {
-    data = response; // fetched data
-    updateTable();
-  },
-  error: function (xhr, status, error) {
-    console.error("Error fetching data:", error);
-  },
-});
+function fetchData() {
+  $.ajax({
+    url: "http://localhost/folds/public/api/folders.php",
+    method: "GET",
+    dataType: "json",
+    success: function (response) {
+      data = response;
+      updateTable();
+    },
+    error: function (xhr, status, error) {
+      console.error("Error fetching data:", error);
+    },
+  });
+}
+
+fetchData();
 
 let currentPage = 1;
 const rowsPerPage = 10;
