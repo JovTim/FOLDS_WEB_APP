@@ -2,8 +2,7 @@
   <!-- Modal Overlay -->
   <div
     class="fixed inset-0 px-2 z-10 overflow-hidden flex items-center justify-center">
-    <div
-      class="absolute inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+    <div class="absolute inset-0 bg-black opacity-50 transition-opacity"></div>
 
     <!-- Modal Content -->
     <div
@@ -35,8 +34,9 @@
 
       </div>
       <!-- Modal Footer -->
-      <div class="border-t px-4 py-2 flex justify-center">
+      <div class="border-t border-gray-400 px-4 py-2 flex justify-center">
         <button
+          id="confirmDeleteFolder"
           class="px-3 py-1 bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-md w-full sm:w-auto">
           DELETE
         </button>
