@@ -5,7 +5,9 @@
   <meta charset="UTF-8" />
   <title>FOLDS</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>
@@ -23,7 +25,7 @@
           <div class="ps-1">
             <button
               type="button"
-              class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black">
+              class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -36,7 +38,7 @@
 
             <button
               type="button"
-              class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black">
+              class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -59,7 +61,7 @@
           <button
             type="button"
             id="addButton"
-            class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black">
+            class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

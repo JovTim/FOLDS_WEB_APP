@@ -6,7 +6,7 @@ require_once __DIR__ . '/../db/conn.php';
 
 // GET FOLDERS
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  $sql = "SELECT * FROM students";
+  $sql = "SELECT * FROM students WHERE is_enrolled = 1";
   $result = $conn->query($sql);
 
   if ($result) {
@@ -25,14 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $data = json_decode(file_get_contents("php://input"), true);
 
-  if (isset($data['student_number'], $data['f_name'], $data['m_name'], $data['l_name'], $data['year'])) {
+  if (isset($data['student_number'], $data['f_name'], $data['m_name'], $data['l_name'], $data['year'], $data['status'])) {
     $student_no = $conn->real_escape_string($data['student_number']);
     $f_name = $conn->real_escape_string($data['f_name']);
     $m_name = $conn->real_escape_string($data['m_name']);
     $l_name = $conn->real_escape_string($data['l_name']);
     $year = $conn->real_escape_string($data['year']);
+    $status = $conn->real_escape_string($data['status']);
 
-    $sql = "INSERT INTO students (student_number, f_name, m_name, l_name, year, status) VALUES ('$student_no', '$f_name', '$m_name', '$l_name', '$year', 1)";
+    $sql = "INSERT INTO students (student_number, f_name, m_name, l_name, year, status) VALUES ('$student_no', '$f_name', '$m_name', '$l_name', '$year', '$status')";
 
     if ($conn->query($sql) === TRUE) {
       http_response_code(201);
@@ -62,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['id'])) {
     $status = $conn->real_escape_string($data['status']);
     $is_enrolled = $conn->real_escape_string($data['is_enrolled']);
 
-    $sql = "UPDATE students SET 
+    $sql = "UPDATE students SET
+                    student_number = '$student_no',
                     f_name = '$f_name',
                     m_name = '$m_name',
                     l_name = '$l_name',

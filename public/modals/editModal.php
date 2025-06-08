@@ -2,8 +2,7 @@
   <!-- Modal Overlay -->
   <div
     class="fixed inset-0 px-2 z-10 overflow-hidden flex items-center justify-center">
-    <div
-      class="absolute inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+    <div class="absolute inset-0 bg-black opacity-50 transition-opacity"></div>
 
     <!-- Modal Content -->
     <div
@@ -38,6 +37,7 @@
               <label class="block text-sm font-bold text-black">First Name<span class="text-red-500">*</span></label>
               <input
                 type="text"
+                id="firstNameEdit"
                 name="firstName"
                 placeholder="e.g. Juan"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1" />
@@ -46,6 +46,7 @@
               <label class="block text-sm font-bold text-black">Middle Name</label>
               <input
                 type="text"
+                id="middleNameEdit"
                 name="middleName"
                 placeholder="e.g. Rose"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1" />
@@ -54,6 +55,7 @@
               <label class="block text-sm font-bold text-black">Last Name<span class="text-red-500">*</span></label>
               <input
                 type="text"
+                id="lastNameEdit"
                 name="lastName"
                 placeholder="e.g. Dela Cruz"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1" />
@@ -66,6 +68,7 @@
               <label class="block text-sm font-bold text-black">Student Number<span class="text-red-500">*</span></label>
               <input
                 type="text"
+                id="studentNumberEdit"
                 name="studentNumber"
                 placeholder="e.g. 2xxx-x-xxxx"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1" />
@@ -73,9 +76,9 @@
             <div>
               <label class="block text-sm font-bold text-black">Year<span class="text-red-500">*</span></label>
               <select
-                name="option1"
+                id="yearOptionEdit"
+                name="yearOption"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1">
-                <option value="">-- Select --</option>
                 <option value="1">First Year</option>
                 <option value="2">Second Year</option>
                 <option value="3">Third Year</option>
@@ -86,9 +89,9 @@
             <div>
               <label class="block text-sm font-bold text-black">Status<span class="text-red-500">*</span></label>
               <select
-                name="option2"
+                id="statusOptionEdit"
+                name="statusOption"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1">
-                <option value="">-- Select --</option>
                 <option value="1">OFFICE</option>
                 <option value="2">ENCODING</option>
               </select>
@@ -98,12 +101,13 @@
       </div>
 
       <!-- Modal Footer -->
-      <div class="border-t px-4 py-2 flex justify-end gap-3">
+      <div class="border-t border-gray-400 px-4 py-2 flex justify-end gap-3">
         <button
           class="px-3 py-1 bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-md w-full sm:w-auto">
           ARCHIVE
         </button>
         <button
+          id="updateChanges"
           class="px-3 py-1 bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-md w-full sm:w-auto">
           UPDATE
         </button>
