@@ -34,7 +34,9 @@ function displayTable(filteredData) {
                         <td class="py-3 px-4 border-b border-gray-100 max-w-[200px] break-words">${item.l_name.toUpperCase()}, ${item.f_name.toUpperCase()} ${item.m_name.toUpperCase()}</td>
                         <td class="py-3 px-4 border-b border-gray-100">YEAR ${item.year.toUpperCase()}</td>
                         <td class="py-3 px-4 border-b border-gray-100">
-                            <select name="status" class="block w-32 border border-black rounded-none px-2 py-1">
+                            <select name="status"
+                            data-id="${item.id}"
+                            class="statusDropDown block w-32 border border-black rounded-none px-2 py-1">
                                 <option value="1" ${
                                   item.status === "1" ? "selected" : ""
                                 }>OFFICE</option>

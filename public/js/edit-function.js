@@ -76,4 +76,30 @@ $(document).ready(function () {
       },
     });
   });
+
+  $(document).on("change", ".statusDropDown", function () {
+    const selectedStatusValue = $(this).val();
+    const id = $(this).data("id");
+
+    console.log("ID: ", id);
+    console.log("Selected value: " + selectedStatusValue);
+
+    const data = {
+      status: selectedStatusValue,
+    };
+
+    $.ajax({
+      url: "http://localhost/folds/public/api/status.php?id=" + id,
+      type: "PUT",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: function (response) {
+        console.log("Status Changed: ", response);
+        fetchData();
+      },
+      error: function (xhr, status, error) {
+        console.error("Error: ", error);
+      },
+    });
+  });
 });
