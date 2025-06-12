@@ -3,18 +3,20 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FOLDS</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- -->
+  <!--  -->
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+
 </head>
 
 <body>
-  <div class="container mx-auto p-4 pt-10 px-10">
+  <div class="container mx-auto p-4 pt-10 px-10 hidden md:block ">
     <?php include "includes/nav.php"; ?>
-
-    <div class="p-10 mx-10 border-2 border-black">
+    <div class=" p-10 mx-10 border-2 border-black">
       <div class="flex justify-between">
         <div class="flex justify-start">
           <input
@@ -95,6 +97,11 @@
     </div>
   </div>
 
+  <!-- Mobile screen only -->
+  <div class="container w-full p-2 block md:hidden">
+    <?php include "mobile.php"; ?>
+  </div>
+
   <?php include "modals/addModal.php"; ?>
   <?php include "modals/editModal.php" ?>
   <?php include "modals/deleteModal.php" ?>
@@ -104,6 +111,7 @@
   <script src="js/add-function.js"></script>
   <script src="js/edit-function.js"></script>
   <script src="js/delete-function.js"></script>
+
 </body>
 
 </html>
