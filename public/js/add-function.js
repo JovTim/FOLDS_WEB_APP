@@ -5,6 +5,10 @@ $(document).ready(function () {
     $("#addFolder").removeClass("hidden").addClass("flex");
   });
 
+  $("#addButtonMobile").on("click", function () {
+    $("#addFolder").removeClass("hidden").addClass("flex");
+  });
+
   $("#closeAddModal").on("click", function () {
     $("#addFolder").removeClass("flex").addClass("hidden");
   });
@@ -33,6 +37,14 @@ $(document).ready(function () {
       success: function (response) {
         console.log("Sucess: ", response);
         $("#addFolder").removeClass("flex").addClass("hidden");
+
+        $("#firstName").val("");
+        $("#middleName").val("");
+        $("#lastName").val("");
+        $("#studentNumber").val("");
+        $("#yearStudent").val("");
+        $("#statusFolder").val("");
+
         fetchData();
       },
       error: function (xhr, status, error) {
