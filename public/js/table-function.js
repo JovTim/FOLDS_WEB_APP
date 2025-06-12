@@ -13,6 +13,7 @@ function fetchData() {
     },
     error: function (xhr, status, error) {
       console.error("Error fetching data:", error);
+      showTemporaryMessage("#errorMsg", 3000);
     },
   });
 }

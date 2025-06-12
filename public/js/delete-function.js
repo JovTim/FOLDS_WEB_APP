@@ -6,31 +6,34 @@ $(document).ready(function () {
   $(document).on("click", ".deleteButton", function () {
     const id = $(this).data("id");
     deleteSelectedID = id;
-    console.log("Delete ID:", id);
     $("#deleteFolder").removeClass("hidden").addClass("flex");
+    $("body").addClass("overflow-hidden");
   });
 
   // Close delete modal
   $("#closeDeleteModal").on("click", function () {
     $("#deleteFolder").removeClass("flex").addClass("hidden");
+    $("body").removeClass("overflow-hidden");
   });
 
   // Confirm delete
   $("#confirmDeleteFolder").on("click", function () {
-    console.log("Folder Deleted:", deleteSelectedID);
-
     $.ajax({
       url:
         "http://localhost/folds/public/api/folders.php?id=" + deleteSelectedID,
       type: "DELETE",
       success: function (response) {
-        console.log("Deleted: ", response);
         // Optional UI update:
         $("#deleteFolder").removeClass("flex").addClass("hidden");
+        $("body").removeClass("overflow-hidden");
+
+        showTemporaryMessage("#successRemove", 3000);
+
         fetchData();
       },
       error: function (xhr, status, error) {
-        console.error("Error: ", error);
+        $("#deleteFolder").removeClass("flex").addClass("hidden");
+        $("body").removeClass("overflow-hidden");
       },
     });
   });

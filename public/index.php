@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FOLDS</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/message.js"></script>
   <!--  -->
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -14,6 +15,10 @@
 </head>
 
 <body>
+  <?php include "includes/messages/added-success.php" ?>
+  <?php include "includes/messages/update-success.php" ?>
+  <?php include "includes/messages/delete-success.php" ?>
+  <?php include "includes/messages/error.php" ?>
   <div class="container mx-auto p-4 pt-10 px-10 hidden md:block ">
     <?php include "includes/nav.php"; ?>
     <div class=" p-10 mx-10 border-2 border-black">

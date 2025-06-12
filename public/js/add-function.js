@@ -3,14 +3,17 @@
 $(document).ready(function () {
   $("#addButton").on("click", function () {
     $("#addFolder").removeClass("hidden").addClass("flex");
+    $("body").addClass("overflow-hidden");
   });
 
   $("#addButtonMobile").on("click", function () {
     $("#addFolder").removeClass("hidden").addClass("flex");
+    $("body").addClass("overflow-hidden");
   });
 
   $("#closeAddModal").on("click", function () {
     $("#addFolder").removeClass("flex").addClass("hidden");
+    $("body").removeClass("overflow-hidden");
   });
 
   $("#submitFolder").on("click", function () {
@@ -35,8 +38,9 @@ $(document).ready(function () {
         status: statusFolder,
       }),
       success: function (response) {
-        console.log("Sucess: ", response);
         $("#addFolder").removeClass("flex").addClass("hidden");
+
+        showTemporaryMessage("#successAdd", 3000);
 
         $("#firstName").val("");
         $("#middleName").val("");
@@ -45,13 +49,16 @@ $(document).ready(function () {
         $("#yearStudent").val("");
         $("#statusFolder").val("");
 
+        $("body").removeClass("overflow-hidden");
+
         fetchData();
       },
       error: function (xhr, status, error) {
-        console.error("Error: ", error);
+        $("#addFolder").removeClass("flex").addClass("hidden");
+        showTemporaryMessage("#errorMsg", 3000);
       },
     });
 
-    console.log("submitted");
+    $("body").removeClass("overflow-hidden");
   });
 });

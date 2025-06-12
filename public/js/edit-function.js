@@ -2,6 +2,7 @@
 $(document).ready(function () {
   let selectedStudentId = null;
   $(document).on("click", ".editButton", function () {
+    $("body").addClass("overflow-hidden");
     const btn = $(this);
 
     const id = btn.data("id");
@@ -13,16 +14,6 @@ $(document).ready(function () {
     const year = btn.data("year");
     const status = btn.data("status");
     const is_enrolled = btn.data("isEnrolled");
-
-    // for debug purpose
-    console.log("Edit ID:", id);
-    console.log("Edit Number:", student_number);
-    console.log("Edit First:", f_name);
-    console.log("Edit Middle:", m_name);
-    console.log("Edit Last:", l_name);
-    console.log("Edit Year:", year);
-    console.log("Edit Status:", status);
-    console.log("Edit Enrolled:", is_enrolled);
 
     $("#firstNameEdit").val(f_name);
     $("#middleNameEdit").val(m_name);
@@ -37,19 +28,10 @@ $(document).ready(function () {
   // Close edit modal on close button click
   $("#closeEditModal").on("click", function () {
     $("#editFolder").removeClass("flex").addClass("hidden");
+    $("body").removeClass("overflow-hidden");
   });
 
   $("#updateChanges").on("click", function () {
-    // for debug purpose
-    console.log("ID: ", selectedStudentId);
-    console.log("Update Number:", $("#studentNumberEdit").val());
-    console.log("Update First:", $("#firstNameEdit").val());
-    console.log("Update Middle:", $("#middleNameEdit").val());
-    console.log("Update Last:", $("#lastNameEdit").val());
-    console.log("Update Year:", $("#yearOptionEdit").val());
-    console.log("Update Status:", $("#statusOptionEdit").val());
-    console.log("Update Enrolled:", 1);
-
     const data = {
       student_number: $("#studentNumberEdit").val(),
       f_name: $("#firstNameEdit").val(),
@@ -67,12 +49,16 @@ $(document).ready(function () {
       data: JSON.stringify(data),
       contentType: "application/json",
       success: function (response) {
-        console.log("Updated: ", response);
         $("#editFolder").removeClass("flex").addClass("hidden");
+        $("body").removeClass("overflow-hidden");
+
+        showTemporaryMessage("#successUpdate", 3000);
         fetchData();
       },
       error: function (xhr, status, error) {
-        console.error("Error: ", error);
+        $("body").removeClass("overflow-hidden");
+        $("#editFolder").removeClass("flex").addClass("hidden");
+        showTemporaryMessage("#errorMsg", 3000);
       },
     });
   });
@@ -80,9 +66,6 @@ $(document).ready(function () {
   $(document).on("change", ".statusDropDown", function () {
     const selectedStatusValue = $(this).val();
     const id = $(this).data("id");
-
-    console.log("ID: ", id);
-    console.log("Selected value: " + selectedStatusValue);
 
     const data = {
       status: selectedStatusValue,
@@ -98,7 +81,7 @@ $(document).ready(function () {
         fetchData();
       },
       error: function (xhr, status, error) {
-        console.error("Error: ", error);
+        showTemporaryMessage("#errorMsg", 3000);
       },
     });
   });
