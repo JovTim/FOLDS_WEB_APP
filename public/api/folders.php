@@ -5,7 +5,7 @@ require_once __DIR__ . '/../db/conn.php';
 
 // GET FOLDERS
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  $sql = "SELECT * FROM students";
+  $sql = "SELECT * FROM students ORDER BY year, l_name";
   $result = $conn->query($sql);
 
   if ($result) {
