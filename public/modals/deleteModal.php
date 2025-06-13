@@ -10,7 +10,7 @@
       <!-- Modal Header -->
       <div class="bg-black text-white px-4 py-2 flex justify-between">
         <h2 class="text-lg font-semibold justify-start">DELETE FOLDER</h2>
-        <button id="closeDeleteModal">
+        <button id="closeDeleteModal" class="cursor-pointer">
           <div class="justify-end">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
       <div class="border-t border-gray-400 px-4 py-2 flex justify-center">
         <button
           id="confirmDeleteFolder"
-          class="px-3 py-1 bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-md w-full sm:w-auto">
+          class="px-3 py-1 bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-md w-full sm:w-auto cursor-pointer">
           DELETE
         </button>
       </div>

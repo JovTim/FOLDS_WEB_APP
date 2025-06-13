@@ -31,11 +31,97 @@ $(document).ready(function () {
     $("body").removeClass("overflow-hidden");
   });
 
+  function validateEditFolderForm() {
+    // Remove previous error messages
+    $(".error").remove();
+
+    // Get form values
+    const firstName = $("#firstNameEdit").val().trim();
+    const middleName = $("#middleNameEdit").val().trim();
+    const lastName = $("#lastNameEdit").val().trim();
+    const studentNumber = $("#studentNumberEdit").val().trim();
+    const yearStudent = $("#yearOptionEdit").val();
+    const statusFolder = $("#statusOptionEdit").val();
+
+    let isValid = true;
+
+    // Validate First Name
+    if (
+      firstName === "" ||
+      !/^[a-zA-ZñÑ\s]+$/.test(firstName) ||
+      firstName.length > 100
+    ) {
+      isValid = false;
+      $("#firstNameEdit").after(
+        '<span class="error text-red-500">Invalid First Name</span>'
+      );
+    }
+
+    // Validate Middle Name (optional)
+    if (
+      middleName !== "" &&
+      (!/^[a-zA-ZñÑ\s]*$/.test(middleName) || middleName.length > 100)
+    ) {
+      isValid = false;
+      $("#middleNameEdit").after(
+        '<span class="error text-red-500">Invalid Middle Name</span>'
+      );
+    }
+
+    // Validate Last Name
+    if (
+      lastName === "" ||
+      !/^[a-zA-ZñÑ\s]+$/.test(lastName) ||
+      lastName.length > 100
+    ) {
+      isValid = false;
+      $("#lastNameEdit").after(
+        '<span class="error text-red-500">Invalid Last Name</span>'
+      );
+    }
+
+    // Validate Student Number
+    const studentNumberPattern = /^2\d{3}-\d-\d{4}[A-Za-z]?$/;
+    if (
+      studentNumber === "" ||
+      !studentNumberPattern.test(studentNumber) ||
+      studentNumber.length > 15
+    ) {
+      isValid = false;
+      $("#studentNumberEdit").after(
+        '<span class="error text-red-500">Invalid Student Number (format: 2xxx-x-xxxx or optional letter)</span>'
+      );
+    }
+
+    // Validate Year
+    if (yearStudent === "") {
+      isValid = false;
+      $("#yearOptionEdit").after(
+        '<span class="error text-red-500">Year is required</span>'
+      );
+    }
+
+    // Validate Status
+    if (statusFolder === "") {
+      isValid = false;
+      $("#statusOptionEdit").after(
+        '<span class="error text-red-500">Status is required</span>'
+      );
+    }
+
+    return isValid;
+  }
+
   $("#updateChanges").on("click", function () {
+    if (!validateEditFolderForm()) return;
+
     const data = {
       student_number: $("#studentNumberEdit").val(),
       f_name: $("#firstNameEdit").val(),
-      m_name: $("#middleNameEdit").val(),
+      m_name:
+        $("#middleNameEdit").val().trim() === ""
+          ? "-"
+          : $("#middleNameEdit").val(),
       l_name: $("#lastNameEdit").val(),
       year: $("#yearOptionEdit").val(),
       status: $("#statusOptionEdit").val(),
@@ -81,6 +167,7 @@ $(document).ready(function () {
         fetchData();
       },
       error: function (xhr, status, error) {
+        console.log("Error: ", error);
         showTemporaryMessage("#errorMsg", 3000);
       },
     });
