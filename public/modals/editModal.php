@@ -103,6 +103,12 @@
       <!-- Modal Footer -->
       <div class="border-t border-gray-400 px-4 py-2 flex justify-end gap-3">
         <button
+          id="unArchiveFolder"
+          class="hidden px-3 py-1 bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-md w-full sm:w-auto cursor-pointer">
+          UNARCHIVE
+        </button>
+        <button
+          id="archiveFolder"
           class="px-3 py-1 bg-black text-white border-2 border-black hover:bg-white hover:text-black rounded-md w-full sm:w-auto cursor-pointer">
           ARCHIVE
         </button>

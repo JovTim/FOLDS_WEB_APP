@@ -15,6 +15,14 @@ $(document).ready(function () {
     const status = btn.data("status");
     const is_enrolled = btn.data("isEnrolled");
 
+    if (is_enrolled == 2) {
+      $("#unArchiveFolder").removeClass("hidden");
+      $("#archiveFolder").addClass("hidden");
+    } else {
+      $("#archiveFolder").removeClass("hidden");
+      $("#unArchiveFolder").addClass("hidden");
+    }
+
     $("#firstNameEdit").val(f_name);
     $("#middleNameEdit").val(m_name);
     $("#lastNameEdit").val(l_name);
@@ -169,6 +177,60 @@ $(document).ready(function () {
       error: function (xhr, status, error) {
         console.log("Error: ", error);
         showTemporaryMessage("#errorMsg", 3000);
+      },
+    });
+  });
+
+  $("#archiveFolder").on("click", function () {
+    console.log("Archived: ", selectedStudentId);
+
+    const data = {
+      is_enrolled: 2,
+    };
+
+    $.ajax({
+      url:
+        "http://localhost/folds/public/api/archive.php?id=" + selectedStudentId,
+      type: "PUT",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: function (response) {
+        console.log("Folder: ", response);
+        $("#editFolder").removeClass("flex").addClass("hidden");
+        $("body").removeClass("overflow-hidden");
+        fetchData();
+      },
+      error: function (xhr, status, error) {
+        console.log("Error: ", error);
+        $("#editFolder").removeClass("flex").addClass("hidden");
+        $("body").removeClass("overflow-hidden");
+      },
+    });
+  });
+
+  $("#unArchiveFolder").on("click", function () {
+    console.log("Unarchived: ", selectedStudentId);
+
+    const data = {
+      is_enrolled: 1,
+    };
+
+    $.ajax({
+      url:
+        "http://localhost/folds/public/api/archive.php?id=" + selectedStudentId,
+      type: "PUT",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: function (response) {
+        console.log("Folder: ", response);
+        $("#editFolder").removeClass("flex").addClass("hidden");
+        $("body").removeClass("overflow-hidden");
+        fetchData();
+      },
+      error: function (xhr, status, error) {
+        console.log("Error: ", error);
+        $("#editFolder").removeClass("flex").addClass("hidden");
+        $("body").removeClass("overflow-hidden");
       },
     });
   });
