@@ -1,12 +1,11 @@
 <?php
 header('Content-Type: application/json');
 
-// Include the database connection
 require_once __DIR__ . '/../db/conn.php';
 
 // GET FOLDERS
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  $sql = "SELECT * FROM students WHERE is_enrolled = 1";
+  $sql = "SELECT * FROM students";
   $result = $conn->query($sql);
 
   if ($result) {
@@ -53,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['id'])) {
   $id = (int) $_GET['id'];
   $data = json_decode(file_get_contents("php://input"), true);
 
-  // Validate input fields (adjust as needed)
+  // Validate input fields
   if (isset($data['student_number'], $data['f_name'], $data['m_name'], $data['l_name'], $data['year'], $data['status'], $data['is_enrolled'])) {
     $student_no = $conn->real_escape_string($data['student_number']);
     $f_name = $conn->real_escape_string($data['f_name']);

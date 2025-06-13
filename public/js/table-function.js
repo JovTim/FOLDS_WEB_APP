@@ -1,4 +1,8 @@
 let data = [];
+let selectedYears = ["1", "2", "3", "4", "0"]; // Possible Years
+let selectedStatus = "All"; // Possible values: "Encoding", "Office", "All"
+
+let selectedEnrollment = "1"; // "All", "1", "2"
 
 // Fetch data from the API
 function fetchData() {
@@ -115,13 +119,33 @@ function displayPagination(totalItems) {
 
 function updateTable() {
   const searchTerm = $("#searchInput").val().toLowerCase();
-  const filteredData = data.filter(
-    (item) =>
+
+  const filteredData = data.filter((item) => {
+    const matchesSearch =
       item.student_number.toLowerCase().includes(searchTerm) ||
       item.f_name.toLowerCase().includes(searchTerm) ||
       item.m_name.toLowerCase().includes(searchTerm) ||
-      item.l_name.toLowerCase().includes(searchTerm)
-  );
+      item.l_name.toLowerCase().includes(searchTerm);
+
+    const matchesYear = selectedYears.includes(String(item.year));
+
+    const statusLabel =
+      item.status === "1"
+        ? "Office"
+        : item.status === "2"
+        ? "Encoding"
+        : "Unknown";
+
+    const matchesStatus =
+      selectedStatus === "All" ||
+      statusLabel.toLowerCase() === selectedStatus.toLowerCase();
+
+    const matchesEnrollment =
+      selectedEnrollment === "All" || item.is_enrolled === selectedEnrollment;
+
+    return matchesSearch && matchesYear && matchesStatus && matchesEnrollment;
+  });
+
   displayTable(filteredData);
 }
 

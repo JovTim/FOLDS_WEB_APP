@@ -32,6 +32,7 @@
           <div class="ps-1">
             <button
               type="button"
+              id="filterButton"
               class="text-white bg-black px-3 py-1.5 rounded-2xl hover:bg-white border-2 hover:border-black hover:text-black cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -111,11 +112,13 @@
   <?php include "modals/editModal.php" ?>
   <?php include "modals/deleteModal.php" ?>
   <?php include "modals/statsModal.php" ?>
+  <?php include "modals/filterModal.php" ?>
 
   <script src="js/table-function.js"></script>
   <script src="js/add-function.js"></script>
   <script src="js/edit-function.js"></script>
   <script src="js/delete-function.js"></script>
+  <script src="js/filter-function.js"></script>
 
 </body>
 
