@@ -10,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['id'])) {
   if (isset($data['status'])) {
     $status = $conn->real_escape_string($data['status']);
 
-    $sqly = "UPDATE students SET
+    $sql = "UPDATE students SET
                 status = '$status'
             WHERE id = '$id'";
 
-    if ($conn->query($sqly) === TRUE) {
+    if ($conn->query($sql) === TRUE) {
       if ($conn->affected_rows > 0) {
         echo json_encode(["message" => "Student status updated successfully"]);
       } else {
