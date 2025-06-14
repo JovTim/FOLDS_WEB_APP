@@ -18,6 +18,8 @@
   <?php include "includes/messages/added-success.php" ?>
   <?php include "includes/messages/update-success.php" ?>
   <?php include "includes/messages/delete-success.php" ?>
+  <?php include "includes/messages/archive-success.php" ?>
+  <?php include "includes/messages/unarchive-success.php" ?>
   <?php include "includes/messages/error.php" ?>
   <div class="container mx-auto p-4 pt-10 px-10 hidden md:block ">
     <?php include "includes/nav.php"; ?>
