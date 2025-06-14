@@ -20,7 +20,7 @@
           alt="FOLDS Logo" />
       </div>
       <h1 class="flex justify-center pt-10 text-6xl font-extrabold">FOLDS</h1>
-      <div class="flex justify-center px-7">
+      <div class="flex justify-center px-7 ">
         <p class="pt-5 text-lg text-center">
           <span class="font-extrabold">FOLDS</span> is a student folder
           management system developed specifically for College-Based
@@ -41,5 +41,6 @@
     </div>
   </div>
 </body>
+<?php include "includes/footer.php" ?>
 
 </html>
