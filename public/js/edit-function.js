@@ -199,11 +199,13 @@ $(document).ready(function () {
         $("#editFolder").removeClass("flex").addClass("hidden");
         $("body").removeClass("overflow-hidden");
         fetchData();
+        showTemporaryMessage("#successArch", 3000);
       },
       error: function (xhr, status, error) {
         console.log("Error: ", error);
         $("#editFolder").removeClass("flex").addClass("hidden");
         $("body").removeClass("overflow-hidden");
+        showTemporaryMessage("#errorMsg", 3000);
       },
     });
   });
@@ -226,11 +228,13 @@ $(document).ready(function () {
         $("#editFolder").removeClass("flex").addClass("hidden");
         $("body").removeClass("overflow-hidden");
         fetchData();
+        showTemporaryMessage("#successUnarch", 3000);
       },
       error: function (xhr, status, error) {
         console.log("Error: ", error);
         $("#editFolder").removeClass("flex").addClass("hidden");
         $("body").removeClass("overflow-hidden");
+        showTemporaryMessage("#errorMsg", 3000);
       },
     });
   });
