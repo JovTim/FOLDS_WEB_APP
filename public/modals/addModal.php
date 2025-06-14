@@ -40,6 +40,7 @@
                 type="text"
                 name="firstName"
                 placeholder="e.g. Juan"
+                maxlength="50"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1" />
             </div>
             <div>
@@ -49,6 +50,7 @@
                 type="text"
                 name="middleName"
                 placeholder="e.g. Rose"
+                maxlength="50"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1" />
             </div>
             <div>
@@ -58,6 +60,7 @@
                 type="text"
                 name="lastName"
                 placeholder="e.g. Dela Cruz"
+                maxlength="50"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1" />
             </div>
           </div>
@@ -71,6 +74,7 @@
                 type="text"
                 name="studentNumber"
                 placeholder="e.g. 2xxx-x-xxxx"
+                maxlength="15"
                 class="mt-1 block w-full border border-black rounded-none px-2 py-1" />
             </div>
             <div>
