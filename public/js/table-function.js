@@ -177,7 +177,14 @@ function displayCards(filteredData) {
   const cardsHtml = filteredData
     .map(
       (item) => `
-              <div class="border-2 border-black rounded-none p-4 shadow-md space-y-2 bg-white">
+              <div class="border-4 rounded-none p-4 shadow-md space-y-2 bg-white
+                ${
+                  item.is_enrolled == 2
+                    ? "border-blue-500"
+                    : item.status == 2
+                    ? "border-red-500"
+                    : "border-black"
+                }">
                 <div class="flex justify-between"> 
                   <div class="text-lg font-semibold">${item.student_number.toUpperCase()}</div>
                   <div class="text-lg font-semibold">YEAR ${item.year.toUpperCase()}</div>
