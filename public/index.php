@@ -92,6 +92,7 @@
       <table class="min-w-full bg-white text-sm">
         <thead class="border-b-2 border-black">
           <tr class="text-left">
+            <th></th>
             <th class="py-3 px-4">STUDENT NO.</th>
             <th class="py-3 px-4">FULL NAME</th>
             <th class="py-3 px-4">YEAR</th>
