@@ -137,8 +137,7 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url:
-        "http://localhost/folds/public/api/folders.php?id=" + selectedStudentId,
+      url: "api/folders.php?id=" + selectedStudentId,
       type: "PUT",
       data: JSON.stringify(data),
       contentType: "application/json",
@@ -166,7 +165,7 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url: "http://localhost/folds/public/api/status.php?id=" + id,
+      url: "api/status.php?id=" + id,
       type: "PUT",
       data: JSON.stringify(data),
       contentType: "application/json",
@@ -189,8 +188,7 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url:
-        "http://localhost/folds/public/api/archive.php?id=" + selectedStudentId,
+      url: "api/archive.php?id=" + selectedStudentId,
       type: "PUT",
       data: JSON.stringify(data),
       contentType: "application/json",
@@ -218,8 +216,7 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url:
-        "http://localhost/folds/public/api/archive.php?id=" + selectedStudentId,
+      url: "api/archive.php?id=" + selectedStudentId,
       type: "PUT",
       data: JSON.stringify(data),
       contentType: "application/json",

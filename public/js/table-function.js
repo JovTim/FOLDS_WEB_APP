@@ -7,7 +7,7 @@ let selectedEnrollment = "1"; // "All", "1", "2"
 // Fetch data from the API
 function fetchData() {
   $.ajax({
-    url: "http://localhost/folds/public/api/folders.php",
+    url: "api/folders.php",
     method: "GET",
     dataType: "json",
     success: function (response) {

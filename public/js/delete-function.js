@@ -19,8 +19,7 @@ $(document).ready(function () {
   // Confirm delete
   $("#confirmDeleteFolder").on("click", function () {
     $.ajax({
-      url:
-        "http://localhost/folds/public/api/folders.php?id=" + deleteSelectedID,
+      url: "api/folders.php?id=" + deleteSelectedID,
       type: "DELETE",
       success: function (response) {
         // Optional UI update:

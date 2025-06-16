@@ -111,7 +111,7 @@ $(document).ready(function () {
       const statusFolder = $("#statusFolder").val();
 
       $.ajax({
-        url: "http://localhost/folds/public/api/folders.php",
+        url: "api/folders.php",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
