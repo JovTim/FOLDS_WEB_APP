@@ -4,5 +4,5 @@ FOLDS is a student folder management system developed specifically for College-B
 
 ## Tailwind CSS Setup
 
-- npm install tailwindcss @tailwindcss/cli
+- npm install
 - npm run tw
